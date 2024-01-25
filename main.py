@@ -17,8 +17,6 @@ def color_word(goal_word, player_word):
     return ["green" if player_word[i] == goal_word[i] else "yellow" if player_word[i] in goal_word else "gray" for i in range(word_len)]
 
 
-# goal_word = "HELLO"
-
 # Rules
 rules = """
 All words will be in uppercase.
@@ -36,9 +34,9 @@ Good luck!
 print("Welcome to Bible Wordle!")
 # Asks if the player knows the rules
 knows_rules = input("Do you know the rules? (y/n): ")
+alphabet = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
 # Checks if the player knows the rules
 # If the player doesn't know the rules, print out the rules
-alphabet = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
 if knows_rules.lower() == "n":
     print(rules)
 while True:
