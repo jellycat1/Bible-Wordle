@@ -1,38 +1,20 @@
 import random
-import time
 
 with open('bible_words.txt', 'r') as f:
     file = f.read()
-    f.close()
 words_list = file.split("\n")
 
-# Define ANSI escape codes for text and background colors
-class TextColor:
-    BLACK = '\033[30m'
-    RED = '\033[31m'
-    GREEN = '\033[32m'
-    YELLOW = '\033[33m'
-    BLUE = '\033[34m'
-    MAGENTA = '\033[35m'
-    CYAN = '\033[36m'
-    WHITE = '\033[37m'
-    GRAY = '\033[90m'
-    RESET = '\033[0m'
+word_len = 5
 
+# Define ANSI escape codes for text and background colors
 class BackgroundColor:
-    BLACK = '\033[40m'
-    RED = '\033[41m'
     GREEN = '\033[42m'
     YELLOW = '\033[43m'
-    BLUE = '\033[44m'
-    MAGENTA = '\033[45m'
-    CYAN = '\033[46m'
-    WHITE = '\033[47m'
     GRAY = '\033[100m'
     RESET = '\033[0m'
 
 def color_word(goal_word, player_word):
-    return ["green" if player_word[i] == goal_word[i] else "yellow" if player_word[i] in goal_word else "gray" for i in range(5)]
+    return ["green" if player_word[i] == goal_word[i] else "yellow" if player_word[i] in goal_word else "gray" for i in range(word_len)]
 
 
 # goal_word = "HELLO"
@@ -45,7 +27,7 @@ All words are from the Bible.
 When you input a word, you will get your word colored.
 If the background color of a letter in your word is gray, the letter is not in the word.
 If the background color of a letter in your word is yellow, the letter is somewhere else in the word.
-If the background color of a letter in your word i green, the letter is in the right place.
+If the background color of a letter in your word is green, the letter is in the right place.
 Every word is five letters long.
 Enter q or quit to end the game.
 Good luck!
@@ -70,7 +52,7 @@ while True:
         print("\nLet's play!")
         while True:
             word = input("Enter a word (uppercase): ")
-            if len(word) != 5:
+            if len(word) != word_len:
                 print("Your word was not five letters long! Please enter a word five letters long.")
                 continue
                 
@@ -93,7 +75,7 @@ while True:
 
         colors_list = color_word(goal_word, word)
 
-        for i in range(5):
+        for i in range(word_len):
             if colors_list[i] == "green":
                 print(f"{BackgroundColor.GREEN}{word[i]}{BackgroundColor.RESET} ", end="")
             elif colors_list[i] == "yellow":
